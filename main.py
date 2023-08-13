@@ -1,41 +1,18 @@
-from flask import Flask, jsonify #, render_template
+from flask import Flask, jsonify , render_template
 from flask_sqlalchemy import SQLAlchemy
+import sqlalchemy
 import os
 import psycopg2
+import pandas as pd
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:NIk2wyo95CVVO6KIMCf4@containers-us-west-109.railway.app:6313/railway"
-db = SQLAlchemy(app)
-
-# class Player(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     player_name = db.Column(db.String(100))
+engine = sqlalchemy.create_engine("postgresql://postgres:NIk2wyo95CVVO6KIMCf4@containers-us-west-109.railway.app:6313/railway")
+df = pd.read_sql("players", con=engine)
 
 @app.route('/')
 def first_player():
-    # Establish connection to the database using psycopg2
-    conn = psycopg2.connect("postgresql://postgres:NIk2wyo95CVVO6KIMCf4@containers-us-west-109.railway.app:6313/railway")
-    cursor = conn.cursor()  # Create a new cursor
-
-    # Execute the SQL query
-    cursor.execute("SELECT player_name FROM players LIMIT 1;")
-
-    # Fetch the result
-    result = cursor.fetchone()
-
-    # Close the database connections
-    cursor.close()
-    conn.close()
-
-    if result:
-        return result[0]  # Return the name of the player
-    else:
-        return "No players found!"
-
-# @app.route('/')
-# def index():
-#     return "hello" #r"hello" #flask.PGPORT #os.getenv('Postgres.DATABASE_URL')
+    return df.to_json()
 
 if __name__ == '__main__':
     app.run(debug=True, port=os.getenv("PORT", default=5000))
