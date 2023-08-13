@@ -3,7 +3,7 @@ from flask import Flask, jsonify #, render_template
 import os
 #import psycopg2
 
-# app = Flask(__name__)
+app = Flask(__name__)
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:9pE5doMyZNcVDSrFtdep@containers-us-west-126.railway.app:7444/railway"
 # db = SQLAlchemy(app)
