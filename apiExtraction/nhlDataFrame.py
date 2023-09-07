@@ -3,8 +3,11 @@ import requests
 from apiExtraction import gameIdCollection as gidc
 
 class nhlDataFrame:
-    def __init__(self):
-        self.df = pd.DataFrame()
+    def __init__(self,df = None):
+        if df is None:
+            self.df = pd.DataFrame()
+        else:
+            self.df = df
         self.game_ids = []
 
     def get_url(self,game_id):

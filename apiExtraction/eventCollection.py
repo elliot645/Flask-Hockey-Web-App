@@ -72,7 +72,6 @@ class shotDataFrame(eventDataFrame):
 
         event_types = ['Shot','Goal','Missed Shot','Blocked Shot']
         df = pd.DataFrame( super()._extract_type_data_from_json(json,event_types,_extract_shot_data_from_event) )
-        print(df)
         #change x and y to be mapped vertically:
         try:
             df['x'] = np.abs(df['x'])

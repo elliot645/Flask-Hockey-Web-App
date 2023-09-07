@@ -20,9 +20,9 @@
             - zero redundancy, @done
             - but necessary context data such as current score at time of shot, @done
             - or team the player plays for at time of boxscore! @done
-- build nhl api extraction classes and test (saturday)
+- build nhl api extraction classes and test (saturday) @done
         - indeces aren't going 0 to infiniti, they stop and restart at 0 periodically. @done
-        - figure out importing grrrrrr
+        - figure out importing grrrrrr @done
         - add expected goals to shot events class and test @done
         - maybe remove the column detection things in player and goalie boxscore collection (if necessary, and make sure to test it still works) @done
     - for later (when the app is running and I want more features
@@ -32,11 +32,11 @@
         - teams
         - officials
         - stars
-- bring everything over to the website project (saturday)
-    - bring folder over to website
+- bring everything over to the website project 
+    - bring folder over to website @done
     - figure out how to connect dbs to postgres
     - create functions for calling from postgres
-- create website layout (sunday)
+- create website layout 
 
 - Predictive Model Design
     - win/lose outcomes
