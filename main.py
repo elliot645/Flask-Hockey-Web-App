@@ -9,8 +9,8 @@ from apiExtraction import eventCollection as ec
 
 app = Flask(__name__)
 
-engine = sqlalchemy.create_engine("postgresql://postgres:NIk2wyo95CVVO6KIMCf4@containers-us-west-109.railway.app:6313/railway")
-df = pd.read_sql("shotevents", con=engine)
+#engine = sqlalchemy.create_engine("postgresql://postgres:NIk2wyo95CVVO6KIMCf4@containers-us-west-109.railway.app:6313/railway")
+#df = pd.read_sql("shotevents", con=engine)
 
 @app.route('/')
 def home_page():
@@ -40,8 +40,9 @@ def players():
 
 @app.route('/players/<player_name>')
 def player(player_name):
-    filtered_df = df[df['shooter'].str.contains(player_name,case=False,na=False)]
-    return filtered_df.to_html(classes=["table-bordered", "table-striped", "table-hover"])
+    #filtered_df = df[df['shooter'].str.contains(player_name,case=False,na=False)]
+    return render_template('players.html')
+    #return filtered_df.to_html(classes=["table-bordered", "table-striped", "table-hover"])
 
 @app.route('/teams/')
 def teams():
