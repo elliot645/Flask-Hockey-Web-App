@@ -18,7 +18,7 @@ def get_schedule_over_range(start_date,end_date,gametype=None):
     return response.json()
 
 #season inputted as string in format "YYYY"
-def get_schedule_over_season(season,game_types :list =None):
+def get_schedule_over_season(season,game_types :list = None):
     #get url with proper gameId, convert to json
     season = str(season)
     season = f"{season}{int(season)+1}"
@@ -26,7 +26,7 @@ def get_schedule_over_season(season,game_types :list =None):
     if game_types is None:
         game_types = ['R','P']
     for game_type in game_types:
-        url += f"&gameType={game_types}"
+        url += f"&gameType={game_type}"
     response = requests.get(url, params={"Content-Type": "application/json"})
 
     return response.json()

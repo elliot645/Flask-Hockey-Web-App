@@ -1,8 +1,4 @@
 from apiExtraction import eventCollection as ec
+from apiExtraction import gameIdCollection as gidc
 
-df = ec.shotDataFrame()
-
-df.update_over_range('1998-01-01', '1998-01-05')
-print(df)
-df2 = ec.shotDataFrame(df.df)
-print(df2)
+print(gidc.collect_ids_over_season(2022))

@@ -32,11 +32,18 @@
         - teams
         - officials
         - stars
-- bring everything over to the website project 
+- bring everything over to the website project @done
     - bring folder over to website @done
-    - figure out how to connect dbs to postgres
-    - create functions for calling from postgres
+    - figure out how to connect dbs to postgres @done
+    - create functions for calling from postgres @done
 - create website layout 
+    - player page
+        - graph their shots
+        - graph their past few games
+        - ...
+    - team page
+    - today's games page
+    - 
 
 - Predictive Model Design
     - win/lose outcomes

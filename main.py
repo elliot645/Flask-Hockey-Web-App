@@ -1,4 +1,4 @@
-from flask import Flask, jsonify , render_template
+from flask import Flask, jsonify , render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy
 import os
@@ -12,6 +12,9 @@ app = Flask(__name__)
 engine = sqlalchemy.create_engine("postgresql://postgres:NIk2wyo95CVVO6KIMCf4@containers-us-west-109.railway.app:6313/railway")
 df = pd.read_sql("shotevents", con=engine)
 
+@app.route('/')
+def home_page():
+    return render_template('index.html')
 
 @app.route('/update_table',methods=['GET'])
 def update_table():
@@ -28,14 +31,25 @@ def update_table():
     except Exception as e:
         return f"An error occurred: {str(e)}", 500
 
-@app.route('/')
-def first_player():
-    return str(df.columns)
+@app.route('/players/',methods=['GET', 'POST'])
+def players():
+    if request.method == 'POST':
+        player_name = request.form['player_name']
+        return redirect(url_for('player', player_name=player_name))
+    return render_template('players.html')
 
-@app.route('/<player_name>')
-def get_player(player_name):
+@app.route('/players/<player_name>')
+def player(player_name):
     filtered_df = df[df['shooter'].str.contains(player_name,case=False,na=False)]
-    return jsonify(filtered_df.to_dict(orient='records'))
+    return filtered_df.to_html(classes=["table-bordered", "table-striped", "table-hover"])
+
+@app.route('/teams/')
+def teams():
+    return render_template('teams.html')
+
+@app.route('/teams/<team_name>')
+def team(team_name):
+    return render_template('team.html',team_name = team_name)
     
 
 if __name__ == '__main__':
